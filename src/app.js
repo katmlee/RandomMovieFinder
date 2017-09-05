@@ -8,10 +8,15 @@ import {
 const App = () => (
   <View style={styles.home}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>What movie should we watch tonight?</Text>
+        <Text style={styles.headerText}>
+          Random Movie Finder
+        </Text>
       </View>
       <View style={styles.homeContent}>
-        <Image source={require('./resources/movieBoardImg.jpg')} />
+        <Text>
+          What movie should we watch tonight?
+        </Text>
+        <Image style={styles.image} source={require('./resources/movieBoardImg.jpg')} />
       </View>
   </View>
 )
@@ -21,7 +26,8 @@ const styles = {
     flex:1
   },
   headerText: {
-    textAlign:'center'
+    textAlign:'center',
+    fontSize: 16
   },
   header: {
     backgroundColor: '#F8F8F8',
@@ -32,6 +38,11 @@ const styles = {
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
+  },
+  image: {
+    width: '30%',
+    height: '30%',
+    resizeMode: 'contain',
   },
   homeContent: {
     flex: 1,
