@@ -6,28 +6,43 @@ import {
   TextInput,
 } from 'react-native';
 
-const App = () => (
-  <View style={styles.home}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>
-          Random Movie Finder
-        </Text>
+const state = {
+  inputValue: '',
+}
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = state
+  }
+
+  render() {
+    console.log(this.state.inputValue)
+    return (
+      <View style={styles.home}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>
+              Random Movie Finder
+            </Text>
+          </View>
+          <View style={styles.homeContent}>
+            <Text>
+              What movie should we watch tonight?
+            </Text>
+            <Image
+              style={styles.image}
+              source={require('./resources/movieBoardImg.jpg')}
+            />
+            <TextInput
+              style={styles.searchBar}
+              placeholder='Search anything...'
+              onChangeText={(inputValue) => { this.setState({inputValue}) }}
+            />
+          </View>
       </View>
-      <View style={styles.homeContent}>
-        <Text>
-          What movie should we watch tonight?
-        </Text>
-        <Image
-          style={styles.image}
-          source={require('./resources/movieBoardImg.jpg')}
-        />
-        <TextInput
-          style={styles.searchBar}
-          placeholder='Search anything...'
-        />
-      </View>
-  </View>
-)
+    )
+  }
+}
 
 const styles = {
   home: {
