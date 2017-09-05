@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  TextInput,
 } from 'react-native';
 
 const App = () => (
@@ -16,7 +17,14 @@ const App = () => (
         <Text>
           What movie should we watch tonight?
         </Text>
-        <Image style={styles.image} source={require('./resources/movieBoardImg.jpg')} />
+        <Image
+          style={styles.image}
+          source={require('./resources/movieBoardImg.jpg')}
+        />
+        <TextInput
+          style={styles.searchBar}
+          placeholder='Search anything...'
+        />
       </View>
   </View>
 )
@@ -46,8 +54,16 @@ const styles = {
   },
   homeContent: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 15,
     alignItems: 'center'
+  },
+  searchBar: {
+    height: 40,
+    width: '70%',
+    padding: 10,
+    borderRadius: 2,
+    borderColor: 'gray',
+    borderWidth: 1
   }
 }
 
