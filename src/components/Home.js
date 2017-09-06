@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import MovieList from './MovieList';
 
 const state = {
   inputValue: '',
@@ -33,23 +34,6 @@ class Home extends Component {
     this.setState({movies});
   }
 
-  renderSearchWord = () => {
-    if (this.state.inputValue !== '') {
-      return (
-        <Text style={styles.currentSearch}>
-          {`Searches for '${this.state.inputValue}'`}
-        </Text>
-    )}
-  }
-
-  renderList = () => {
-    if (this.state.movies && this.state.movies.length > 0) {
-      return this.state.movies.map(movie =>
-        <Text key={movie.id}>{movie.title}</Text>
-      );
-    }
-  }
-
   render() {
     return (
       <View style={styles.homeContent}>
@@ -70,10 +54,8 @@ class Home extends Component {
             <Text> Search </Text>
           </View>
         </TouchableOpacity>
-        {this.renderSearchWord()}
-        <ScrollView style={styles.searchResults}>
-          {this.renderList()}
-        </ScrollView>
+        <MovieList searchKeyword={this.state.inputValue}
+          movies={this.state.movies} />
       </View>
     )
   }
@@ -102,16 +84,7 @@ const styles = {
     padding: 10,
     borderRadius: 2,
     borderColor: 'gray',
-    borderWidth: 1
-  },
-  searchResults:{
-    width:'100%',
-    paddingLeft:'15%',
-    paddingRight:'15%',
-  },
-  currentSearch: {
-    paddingTop: 16,
-    fontWeight: 'bold',
+    borderWidth: 1,
   }
 }
 
