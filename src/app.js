@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import Header from './Header';
 
 const state = {
   inputValue: '',
@@ -50,11 +51,7 @@ class App extends Component {
     console.log(this.state.inputValue)
     return (
       <View style={styles.home}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>
-              Random Movie Finder
-            </Text>
-          </View>
+          <Header> Random Movie Finder </Header>
           <View style={styles.homeContent}>
             <Text>
               What movie should we watch tonight?
@@ -81,20 +78,6 @@ class App extends Component {
 const styles = {
   home: {
     flex:1
-  },
-  headerText: {
-    textAlign:'center',
-    fontSize: 16
-  },
-  header: {
-    backgroundColor: '#F8F8F8',
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 15,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
   },
   image: {
     width: '30%',
