@@ -12,7 +12,8 @@ const MovieCell = ({movie}) => (
 
 const styles = {
   cell: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    margin: 10
   },
   image: {
     width: 50,

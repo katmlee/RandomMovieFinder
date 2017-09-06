@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
   Text,
-  ScrollView,
   View,
   ListView,
  } from 'react-native';
- import MovieCell from './MovieCell'
+ import MovieCell from './MovieCell';
 
 const renderList = (movies) => {
   if (movies && movies.length > 0) {
@@ -42,12 +41,11 @@ class MovieList extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.searchResults}>
-        <ListView
+      <ListView
+        style={styles.searchResults}
           dataSource= {this.state.dataSource}
           renderRow={(movie) => <MovieCell movie={movie} />}
         />
-      </ScrollView>
     )
   }
 };
@@ -55,8 +53,7 @@ class MovieList extends Component {
 const styles = {
   searchResults:{
     flex:1,
-    width:'100%',
-    padding:10
+    width:'100%'
   },
   currentSearch: {
     textAlign: 'center',
