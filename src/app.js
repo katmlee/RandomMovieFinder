@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fakeMoviesApi from './fakeMoviesApi';
 import {
   Text,
   View,
@@ -10,10 +11,20 @@ const state = {
   inputValue: '',
 }
 
+const searchMovies = (keyword) => {
+  movies = fakeMoviesApi(keyword);
+  console.log(movies);
+}
+
 class App extends Component {
   constructor() {
     super()
     this.state = state
+  }
+
+  onChangeText = (input) => {
+    this.setState({input})
+    searchMovies(input)
   }
 
   render() {
@@ -36,7 +47,7 @@ class App extends Component {
             <TextInput
               style={styles.searchBar}
               placeholder='Search anything...'
-              onChangeText={(inputValue) => { this.setState({inputValue}) }}
+              onChangeText={this.onChangeText}
             />
           </View>
       </View>
