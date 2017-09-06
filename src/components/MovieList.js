@@ -5,6 +5,7 @@ import {
   View,
   ListView,
  } from 'react-native';
+ import MovieCell from './MovieCell'
 
 const renderList = (movies) => {
   if (movies && movies.length > 0) {
@@ -44,7 +45,7 @@ class MovieList extends Component {
       <ScrollView style={styles.searchResults}>
         <ListView
           dataSource= {this.state.dataSource}
-          renderRow={(movie) => <Text key={movie.id}>{movie.title}</Text>}
+          renderRow={(movie) => <MovieCell movie={movie} />}
         />
       </ScrollView>
     )
