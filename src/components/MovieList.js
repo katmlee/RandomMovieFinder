@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, View } from 'react-native';
+import {
+  Text,
+  ScrollView,
+  View,
+  ListView,
+ } from 'react-native';
 
 const renderList = (movies) => {
   if (movies && movies.length > 0) {
@@ -19,17 +24,29 @@ const renderSearchWord = (searchKeyword) => {
 }
 
 class MovieList extends Component {
+  constructor(props) {
+    super(props);
+
+    const movies = props.navigation.state.params.movies || [];
+
+    const ds = new ListView.DataSource({rowHasChanged: (movie1, movie2) => movie1.id !== movie2.id});
+    this.state = {
+      dataSource: ds.cloneWithRows(movies),
+    };
+  }
+
   static navigationOptions = ({ navigation }) => ({
     title: renderSearchWord(navigation.state.params.searchKeyword),
   });
 
   render() {
     return (
-      <View style={styles.searchResults}>
-        <ScrollView>
-            {renderList(this.props.navigation.state.params.movies)}
-        </ScrollView>
-      </View>
+      <ScrollView style={styles.searchResults}>
+        <ListView
+          dataSource= {this.state.dataSource}
+          renderRow={(movie) => <Text key={movie.id}>{movie.title}</Text>}
+        />
+      </ScrollView>
     )
   }
 };
