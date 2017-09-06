@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
 const state = {
@@ -21,11 +22,15 @@ class Home extends Component {
 
   onChangeText = (inputValue) => {
     this.setState({inputValue})
-    this.searchMovies(inputValue)
+  }
+
+  onButtonPress = () => {
+    this.searchMovies(this.state.inputValue)
   }
 
   searchMovies = (keyword) => {
-    this.setState({movies: fakeMoviesApi(keyword)});
+    let movies = fakeMoviesApi(keyword)
+    this.setState({movies});
   }
 
   renderSearchWord = () => {
@@ -60,6 +65,11 @@ class Home extends Component {
           placeholder='Search anything...'
           onChangeText={this.onChangeText}
         />
+        <TouchableOpacity onPress={this.onButtonPress}>
+          <View style={styles.button}>
+            <Text> Search </Text>
+          </View>
+        </TouchableOpacity>
         {this.renderSearchWord()}
         <ScrollView style={styles.searchResults}>
           {this.renderList()}
@@ -70,6 +80,12 @@ class Home extends Component {
 }
 
 const styles = {
+  button: {
+    borderWidth: 1,
+    borderRadius: 3,
+    padding: 5,
+    margin: 5,
+  },
   image: {
     width: '30%',
     height: '30%',
