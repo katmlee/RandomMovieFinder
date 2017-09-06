@@ -35,8 +35,10 @@ class Home extends Component {
 
   searchMovies = (keyword) => {
     let movies = fakeMoviesApi(keyword)
-    this.setState({movies});
-    this.props.navigation.navigate('MovieList');
+    this.props.navigation.navigate('MovieList', {
+      searchKeyword: this.state.inputValue,
+      movies
+    });
   }
 
   render() {
@@ -59,8 +61,6 @@ class Home extends Component {
             <Text> Search </Text>
           </View>
         </TouchableOpacity>
-        <MovieList searchKeyword={this.state.inputValue}
-          movies={this.state.movies} />
       </View>
     )
   }

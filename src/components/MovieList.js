@@ -18,13 +18,13 @@ const renderSearchWord = (searchKeyword) => {
   )}
 }
 
-const MovieList = ({searchKeyword, movies}) => (
+const MovieList = ({navigation}) => (
   <View style={styles.searchResults}>
     <Text style={styles.currentSearch}>
-        {renderSearchWord(searchKeyword)}
+        {renderSearchWord(navigation.state.params.searchKeyword)}
     </Text>
     <ScrollView>
-        {renderList(movies)}
+        {renderList(navigation.state.params.movies)}
     </ScrollView>
   </View>
 );
