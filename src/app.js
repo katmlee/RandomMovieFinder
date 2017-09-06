@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import Home from './components/Home';
 import Header from './components/Header';
+import MovieList from './components/MovieList';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-const App = () => (
-  <View style={styles.app}>
-    <Header>Random Movie Finder</Header>
-    <Home />
-  </View>
-);
+const App = StackNavigator({
+  Home: { screen: Home },
+  MovieList: { screen: MovieList },
+});
 
 const styles = {
   app: {

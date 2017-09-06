@@ -16,6 +16,10 @@ const state = {
 }
 
 class Home extends Component {
+  static navigationOptions = {
+    title: 'Random Movie Finder',
+  };
+
   constructor() {
     super()
     this.state = state
@@ -32,6 +36,7 @@ class Home extends Component {
   searchMovies = (keyword) => {
     let movies = fakeMoviesApi(keyword)
     this.setState({movies});
+    this.props.navigation.navigate('MovieList');
   }
 
   render() {
