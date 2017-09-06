@@ -5,6 +5,7 @@ import {
   View,
   Image,
   TextInput,
+  ScrollView,
 } from 'react-native';
 
 const state = {
@@ -38,7 +39,7 @@ class App extends Component {
   }
 
   renderList = () => {
-    if (this.state.movies.length > 0) {
+    if (this.state.movies && this.state.movies.length > 0) {
       return this.state.movies.map(movie =>
         <Text key={movie.id}>{movie.title}</Text>
       );
@@ -68,7 +69,9 @@ class App extends Component {
               onChangeText={this.onChangeText}
             />
             {this.renderSearchWord()}
-            {this.state.movies && this.renderList()}
+            <ScrollView style={styles.searchResults}>
+              {this.renderList()}
+            </ScrollView>
           </View>
       </View>
     )
@@ -110,6 +113,11 @@ const styles = {
     borderRadius: 2,
     borderColor: 'gray',
     borderWidth: 1
+  },
+  searchResults:{
+    width:'100%',
+    paddingLeft:'15%',
+    paddingRight:'15%',
   },
   currentSearch: {
     paddingTop: 16,
