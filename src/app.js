@@ -9,12 +9,9 @@ import {
 
 const state = {
   inputValue: '',
+  movies: [],
 }
 
-const searchMovies = (keyword) => {
-  movies = fakeMoviesApi(keyword);
-  console.log(movies);
-}
 
 class App extends Component {
   constructor() {
@@ -22,9 +19,30 @@ class App extends Component {
     this.state = state
   }
 
-  onChangeText = (input) => {
-    this.setState({input})
-    searchMovies(input)
+  onChangeText = (inputValue) => {
+    this.setState({inputValue})
+    this.searchMovies(inputValue)
+  }
+
+  searchMovies = (keyword) => {
+    this.setState({movies: fakeMoviesApi(keyword)});
+  }
+
+  renderSearchWord = () => {
+    if (this.state.inputValue !== '') {
+      return (
+        <Text style={styles.currentSearch}>
+          {`Searches for '${this.state.inputValue}'`}
+        </Text>
+    )}
+  }
+
+  renderList = () => {
+    if (this.state.movies.length > 0) {
+      return this.state.movies.map(movie =>
+        <Text key={movie.id}>{movie.title}</Text>
+      );
+    }
   }
 
   render() {
@@ -49,6 +67,8 @@ class App extends Component {
               placeholder='Search anything...'
               onChangeText={this.onChangeText}
             />
+            {this.renderSearchWord()}
+            {this.state.movies && this.renderList()}
           </View>
       </View>
     )
@@ -90,6 +110,10 @@ const styles = {
     borderRadius: 2,
     borderColor: 'gray',
     borderWidth: 1
+  },
+  currentSearch: {
+    paddingTop: 16,
+    fontWeight: 'bold',
   }
 }
 

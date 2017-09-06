@@ -1,6 +1,6 @@
-import results from './resources/movies.json';
+import movies from './resources/movies.json';
 export default (keyword) => {
   if (keyword === 'Fight') {
-    return results;
+    return movies.results;
   }
 }
