@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 
 const renderList = (movies) => {
@@ -18,29 +18,34 @@ const renderSearchWord = (searchKeyword) => {
   )}
 }
 
-const MovieList = ({navigation}) => (
-  <View style={styles.searchResults}>
-    <Text style={styles.currentSearch}>
-        {renderSearchWord(navigation.state.params.searchKeyword)}
-    </Text>
-    <ScrollView>
-        {renderList(navigation.state.params.movies)}
-    </ScrollView>
-  </View>
-);
+class MovieList extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: renderSearchWord(navigation.state.params.searchKeyword),
+  });
+
+  render() {
+    return (
+      <View style={styles.searchResults}>
+        <ScrollView>
+            {renderList(this.props.navigation.state.params.movies)}
+        </ScrollView>
+      </View>
+    )
+  }
+};
 
 const styles = {
   searchResults:{
     flex:1,
     width:'100%',
-    paddingLeft:'15%',
-    paddingRight:'15%',
+    padding:10
   },
   currentSearch: {
     textAlign: 'center',
     paddingTop: 16,
     paddingBottom: 16,
     fontWeight: 'bold',
+    color: '#DB5461'
   }
 }
 
