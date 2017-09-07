@@ -49,7 +49,7 @@ class Home extends Component {
         </Text>
         <Image
           style={styles.image}
-          source={require('../resources/movieBoardImg.jpg')}
+          source={require('../resources/movieBoardImg.png')}
         />
         <TextInput
           style={styles.searchBar}
