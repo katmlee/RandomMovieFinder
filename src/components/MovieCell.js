@@ -6,19 +6,35 @@ import {Text, Image, View} from 'react-native';
 const MovieCell = ({movie}) => (
   <View style={styles.cell}>
     <Image style={styles.image} source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} />
-    <Text key={movie.id}>{movie.title}</Text>
+    <View style={styles.description}>
+      <Text style={styles.titleText} key={movie.id}>{movie.title}</Text>
+      <Text style={styles.ratingText}>{movie.vote_average}/10</Text>
+    </View>
   </View>
 );
 
 const styles = {
   cell: {
     flexDirection: 'row',
-    margin: 10
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
   },
   image: {
     width: 50,
     height: 50,
     resizeMode: 'contain'
+  },
+  titleText: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  ratingText: {
+    fontSize: 16,
+  },
+  description: {
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   }
 }
 
