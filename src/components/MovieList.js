@@ -16,11 +16,8 @@ const renderList = (movies) => {
 
 const renderSearchWord = (searchKeyword) => {
   if (searchKeyword !== '') {
-    return (
-      <Text style={styles.currentSearch}>
-        {`Searches for '${searchKeyword}'`}
-      </Text>
-  )}
+    return `Searches for '${searchKeyword}'`
+  }
 }
 
 class MovieList extends Component {
@@ -39,12 +36,16 @@ class MovieList extends Component {
     title: renderSearchWord(navigation.state.params.searchKeyword),
   });
 
+  movieSelected = (movie) => {
+    this.props.navigation.navigate('MovieDetail', {movie})
+  }
+
   render() {
     return (
       <ListView
         style={styles.searchResults}
           dataSource= {this.state.dataSource}
-          renderRow={(movie) => <MovieCell movie={movie} />}
+          renderRow={(movie) => <MovieCell movie={movie} callback={this.movieSelected} />}
         />
     )
   }
