@@ -13,7 +13,7 @@ import MovieList from './MovieList';
 const state = {
   inputValue: '',
   movies: [],
-}
+};
 
 class Home extends Component {
   static navigationOptions = {
@@ -21,20 +21,20 @@ class Home extends Component {
   };
 
   constructor() {
-    super()
-    this.state = state
+    super();
+    this.state = state;
   }
 
   onChangeText = (inputValue) => {
-    this.setState({inputValue})
+    this.setState({ inputValue });
   }
 
   onButtonPress = () => {
-    this.searchMovies(this.state.inputValue)
+    this.searchMovies(this.state.inputValue);
   }
 
   searchMovies = (keyword) => {
-    let movies = fakeMoviesApi.search(keyword)
+    const movies = fakeMoviesApi.search(keyword);
     this.props.navigation.navigate('MovieList', {
       searchKeyword: this.state.inputValue,
       movies
@@ -62,7 +62,7 @@ class Home extends Component {
           </View>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
@@ -91,6 +91,6 @@ const styles = {
     borderColor: 'gray',
     borderWidth: 1,
   }
-}
+};
 
 export default Home;

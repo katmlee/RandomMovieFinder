@@ -12,13 +12,13 @@ const renderList = (movies) => {
       <Text key={movie.id}>{movie.title}</Text>
     );
   }
-}
+};
 
 const renderSearchWord = (searchKeyword) => {
   if (searchKeyword !== '') {
-    return `Searches for '${searchKeyword}'`
+    return `Searches for '${searchKeyword}'`;
   }
-}
+};
 
 class MovieList extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -26,7 +26,7 @@ class MovieList extends Component {
   });
 
   movieSelected = (movie) => {
-    this.props.navigation.navigate('MovieDetail', {movie})
+    this.props.navigation.navigate('MovieDetail', { movie });
   }
 
   render() {
@@ -35,16 +35,16 @@ class MovieList extends Component {
           style={styles.searchResults}
           data={this.props.navigation.state.params.movies}
           keyExtractor={(item) => item.id}
-          renderItem={({item}) => <MovieCell movie={item} callback={this.movieSelected} />}
-        />
-    )
+          renderItem={({ item }) => <MovieCell movie={item} callback={this.movieSelected} />}
+      />
+    );
   }
-};
+}
 
 const styles = {
-  searchResults:{
-    flex:1,
-    width:'100%'
+  searchResults: {
+    flex: 1,
+    width: '100%'
   },
   currentSearch: {
     textAlign: 'center',
@@ -53,8 +53,7 @@ const styles = {
     fontWeight: 'bold',
     color: '#DB5461'
   }
-}
+};
 
 export default MovieList;
-
 

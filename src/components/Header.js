@@ -6,11 +6,11 @@ export default Header = (props) =>
     <Text style={styles.headerText}>
       {props.children}
     </Text>
-  </View>
+  </View>;
 
 const styles = {
   headerText: {
-    textAlign:'center',
+    textAlign: 'center',
     fontSize: 16
   },
   header: {
@@ -20,7 +20,7 @@ const styles = {
     alignItems: 'center',
     paddingTop: 15,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
   },
-}
+};

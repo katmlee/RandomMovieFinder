@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {ScrollView, View, Image, Text} from 'react-native';
+import React, { Component } from 'react';
+import { ScrollView, View, Image, Text } from 'react-native';
 import { IMAGE_PREFIX } from '../fakeMoviesApi';
 
 class MovieDetail extends Component {
@@ -8,12 +8,12 @@ class MovieDetail extends Component {
     });
 
     render() {
-        const {navigation} = this.props
-        const {movie} = navigation.state.params
+        const { navigation } = this.props;
+        const { movie } = navigation.state.params;
         return (
             <ScrollView>
                 <View>
-                    <Image style={styles.image} source={{uri:`${IMAGE_PREFIX}${movie.backdrop_path}`}} />
+                    <Image style={styles.image} source={{ uri: `${IMAGE_PREFIX}${movie.backdrop_path}` }} />
                     <View style={styles.content}>
                         <Text style={[styles.content_font, styles.title]}>{movie.title}</Text>
                         <View style={styles.first_row}>
@@ -24,14 +24,14 @@ class MovieDetail extends Component {
                     </View>
                 </View>
             </ScrollView>
-        )
+        );
     }
 }
 
 const styles = {
     image: {
         width: '100%',
-        height:200
+        height: 200
     },
     content: {
         padding: 10
@@ -49,6 +49,6 @@ const styles = {
         fontWeight: 'bold',
         marginBottom: 10
     }
-}
+};
 
 export default MovieDetail;
