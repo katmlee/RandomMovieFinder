@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  ListView,
+  FlatList,
  } from 'react-native';
  import MovieCell from './MovieCell';
 
@@ -21,17 +21,6 @@ const renderSearchWord = (searchKeyword) => {
 }
 
 class MovieList extends Component {
-  constructor(props) {
-    super(props);
-
-    const movies = props.navigation.state.params.movies || [];
-
-    const ds = new ListView.DataSource({rowHasChanged: (movie1, movie2) => movie1.id !== movie2.id});
-    this.state = {
-      dataSource: ds.cloneWithRows(movies),
-    };
-  }
-
   static navigationOptions = ({ navigation }) => ({
     title: renderSearchWord(navigation.state.params.searchKeyword),
   });
@@ -42,10 +31,11 @@ class MovieList extends Component {
 
   render() {
     return (
-      <ListView
-        style={styles.searchResults}
-          dataSource= {this.state.dataSource}
-          renderRow={(movie) => <MovieCell movie={movie} callback={this.movieSelected} />}
+      <FlatList
+          style={styles.searchResults}
+          data={this.props.navigation.state.params.movies}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => <MovieCell movie={item} callback={this.movieSelected} />}
         />
     )
   }
