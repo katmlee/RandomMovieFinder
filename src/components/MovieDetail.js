@@ -1,15 +1,54 @@
-import React, {Component} from 'react'
-import {Text} from 'react-native'
+import React, {Component} from 'react';
+import {ScrollView, View, Image, Text} from 'react-native';
+import { IMAGE_PREFIX } from '../fakeMoviesApi';
 
 class MovieDetail extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: navigation.state.params.movie.title,
+        title: 'Movie',
     });
 
     render() {
         const {navigation} = this.props
-        return <Text>{navigation.state.params.movie.overview}</Text>
+        const {movie} = navigation.state.params
+        return (
+            <ScrollView>
+                <View>
+                    <Image style={styles.image} source={{uri:`${IMAGE_PREFIX}${movie.backdrop_path}`}} />
+                    <View style={styles.content}>
+                        <Text style={[styles.content_font, styles.title]}>{movie.title}</Text>
+                        <View style={styles.first_row}>
+                            <Text style={styles.content_font}>Release Date: {movie.release_date}</Text>
+                            <Text style={styles.content_font}>Rating: {movie.vote_average}/10</Text>
+                        </View>
+                        <Text>{movie.overview}</Text>
+                    </View>
+                </View>
+            </ScrollView>
+        )
     }
 }
 
-export default MovieDetail
+const styles = {
+    image: {
+        width: '100%',
+        height:200
+    },
+    content: {
+        padding: 10
+    },
+    first_row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10
+    },
+    content_font: {
+        fontSize: 16,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10
+    }
+}
+
+export default MovieDetail;
