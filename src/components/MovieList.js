@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
   FlatList,
  } from 'react-native';
  import MovieCell from './MovieCell';
-
-const renderList = (movies) => {
-  if (movies && movies.length > 0) {
-    return movies.map(movie =>
-      <Text key={movie.id}>{movie.title}</Text>
-    );
-  }
-};
 
 const renderSearchWord = (searchKeyword) => {
   if (searchKeyword !== '') {

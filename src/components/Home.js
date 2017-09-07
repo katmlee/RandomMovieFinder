@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import * as fakeMoviesApi from '../fakeMoviesApi';
 import {
   Text,
   View,
   Image,
   TextInput,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import MovieList from './MovieList';
+import * as fakeMoviesApi from '../fakeMoviesApi';
+
+const imageSource = require('../resources/movieBoardImg.png');
 
 const state = {
   inputValue: '',
@@ -49,7 +49,7 @@ class Home extends Component {
         </Text>
         <Image
           style={styles.image}
-          source={require('../resources/movieBoardImg.png')}
+          source={imageSource}
         />
         <TextInput
           style={styles.searchBar}
