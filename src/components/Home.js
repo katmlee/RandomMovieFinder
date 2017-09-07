@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fakeMoviesApi from '../fakeMoviesApi';
+import * as fakeMoviesApi from '../fakeMoviesApi';
 import {
   Text,
   View,
@@ -34,7 +34,7 @@ class Home extends Component {
   }
 
   searchMovies = (keyword) => {
-    let movies = fakeMoviesApi(keyword)
+    let movies = fakeMoviesApi.search(keyword)
     this.props.navigation.navigate('MovieList', {
       searchKeyword: this.state.inputValue,
       movies

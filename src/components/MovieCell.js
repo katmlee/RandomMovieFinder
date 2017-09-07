@@ -1,12 +1,11 @@
 import React from 'react';
 import {Text, Image, View, TouchableHighlight} from 'react-native';
-// https://image.tmdb.org/t/p/w500/movie/q0R4crx2SehcEEQEkYObktdeFy.jpg
+import { IMAGE_PREFIX } from '../fakeMoviesApi';
 
-// https://image.tmdb.org/t/p/w500/uX7LXnsC7bZJZjn048UCOwkPXWJ.jpg
 const MovieCell = ({movie, callback}) => (
   <TouchableHighlight onPress={() => {callback(movie)}}>
     <View style={styles.cell}>
-      <Image style={styles.image} source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} />
+      <Image style={styles.image} source={{uri: `${IMAGE_PREFIX}${movie.poster_path}`}} />
       <View style={styles.description}>
         <Text style={styles.titleText} key={movie.id}>{movie.title}</Text>
         <Text style={styles.ratingText}>{movie.vote_average}/10</Text>
