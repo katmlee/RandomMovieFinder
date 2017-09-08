@@ -10,7 +10,10 @@ class MovieList extends Component {
   });
 
   movieSelected = (movie) => {
-    this.props.navigation.navigate('MovieDetail', { movie });
+    const { removeFromFavorite, addToFavorite, favorites } = this.props.navigation.state.params;
+    this.props.navigation.navigate('MovieDetail', 
+      { movie, favorites, removeFromFavorite, addToFavorite }
+    );
   }
 
   render() {

@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 import { ScrollView, View, Image, Text, TouchableHighlight } from 'react-native';
 import { IMAGE_PREFIX } from '../fakeMoviesApi';
 import favoritesIcon from '../resources/favorites.png';
+import favoritesSelectedIcon from '../resources/favorites_selected.png';
 
-const HeartButton = ({movie}) => (
-    <TouchableHighlight 
+const HeartButton = ({ movie, favorites, removeFromFavorite, addToFavorite }) => (
+    <TouchableHighlight
         style={{ marginRight: 10 }}
-        onPress={() => { console.log(movie); }} 
+        onPress={() => {
+            if (isFavorite(favorites, movie)) {
+                removeFromFavorite(movie);
+            } else {
+                addToFavorite(movie);
+            }
+        }} 
     >
-        <Image source={favoritesIcon} />
+        <Image source={isFavorite(favorites, movie) ? favoritesSelectedIcon : favoritesIcon} />
     </TouchableHighlight>
 );
 
-class MovieDetail extends Component {
-    static navigationOptions = ({navigation}) => ({
-        title: 'Movie',
-        headerRight: <HeartButton movie={navigation.state.params.movie} />
-    });
+const isFavorite = (favorites, movie) =>
+    favorites.includes(movie);
 
+
+class MovieDetail extends Component {
     render() {
         const { navigation } = this.props;
         const { movie } = navigation.state.params;
@@ -45,6 +51,17 @@ class MovieDetail extends Component {
         );
     }
 }
+
+MovieDetail.navigationOptions = ({ navigation }) => ({
+    title: 'Movie',
+    headerRight:
+        <HeartButton 
+            movie={navigation.state.params.movie} 
+            addToFavorite={navigation.state.params.addToFavorite}
+            removeFromFavorite={navigation.state.params.removeFromFavorite}
+            favorites={navigation.state.params.favorites} 
+        />
+});
 
 const styles = {
     image: {
