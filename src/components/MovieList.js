@@ -4,15 +4,9 @@ import {
  } from 'react-native';
  import MovieCell from './MovieCell';
 
-const renderSearchWord = (searchKeyword) => {
-  if (searchKeyword !== '') {
-    return `Searches for '${searchKeyword}'`;
-  }
-};
-
 class MovieList extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: renderSearchWord(navigation.state.params.searchKeyword),
+    title: navigation.state.params.listingTitle,
   });
 
   movieSelected = (movie) => {

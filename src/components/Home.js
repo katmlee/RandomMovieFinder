@@ -33,10 +33,17 @@ class Home extends Component {
     this.searchMovies(this.state.inputValue);
   }
 
+  seeMyFavorites = () => {
+    this.props.navigation.navigate('MovieList', {
+      listingTitle: 'My Favorites',
+      movies: []
+    });
+  }
+
   searchMovies = (keyword) => {
     const movies = fakeMoviesApi.search(keyword);
     this.props.navigation.navigate('MovieList', {
-      searchKeyword: this.state.inputValue,
+      listingTitle: `Searches for '${keyword}'`,
       movies
     });
   }
@@ -59,6 +66,11 @@ class Home extends Component {
         <TouchableOpacity onPress={this.onButtonPress}>
           <View style={styles.button}>
             <Text> Search </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.seeMyFavorites}>
+          <View style={styles.button}>
+            <Text> See my favorites </Text>
           </View>
         </TouchableOpacity>
       </View>
