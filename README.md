@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- [Xcode](https://itunes.apple.com/au/app/xcode/id497799835?mt=12) or [Android Studio](https://developer.android.com/studio/index.html#mac-bundle) depending on your target mobile platform
+- [Xcode](https://facebook.github.io/react-native/docs/getting-started.html#xcode) or [Android Studio](https://facebook.github.io/react-native/docs/getting-started.html#android-development-environment) depending on your target mobile platform
 - [Homebrew](https://docs.brew.sh/Installation.html)
 - Node
 
@@ -37,4 +37,7 @@ $ react-native run-android
 ```
 
 ## Tests
-
+Run unit tests
+```
+$ npm test
+```
