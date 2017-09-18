@@ -1,27 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Image, Text, TouchableHighlight } from 'react-native';
+import { ScrollView, View, Image, Text } from 'react-native';
 import { IMAGE_PREFIX } from '../fakeMoviesApi';
-import favoritesIcon from '../resources/favorites.png';
-import favoritesSelectedIcon from '../resources/favorites_selected.png';
-
-const HeartButton = ({ movie, favorites, removeFromFavorite, addToFavorite }) => (
-    <TouchableHighlight
-        style={{ marginRight: 10 }}
-        onPress={() => {
-            if (isFavorite(favorites, movie)) {
-                removeFromFavorite(movie);
-            } else {
-                addToFavorite(movie);
-            }
-        }} 
-    >
-        <Image source={isFavorite(favorites, movie) ? favoritesSelectedIcon : favoritesIcon} />
-    </TouchableHighlight>
-);
-
-const isFavorite = (favorites, movie) =>
-    favorites.includes(movie);
-
+import HeartButton from '../containers/HeartButton';
 
 class MovieDetail extends Component {
     render() {
@@ -30,9 +10,9 @@ class MovieDetail extends Component {
         return (
             <ScrollView>
                 <View>
-                    <Image 
-                    style={styles.image} 
-                    source={{ uri: `${IMAGE_PREFIX}${movie.backdrop_path}` }} 
+                    <Image
+                    style={styles.image}
+                    source={{ uri: `${IMAGE_PREFIX}${movie.backdrop_path}` }}
                     />
                     <View style={styles.content}>
                         <Text style={[styles.content_font, styles.title]}>{movie.title}</Text>
@@ -55,11 +35,9 @@ class MovieDetail extends Component {
 MovieDetail.navigationOptions = ({ navigation }) => ({
     title: 'Movie',
     headerRight:
-        <HeartButton 
-            movie={navigation.state.params.movie} 
-            addToFavorite={navigation.state.params.addToFavorite}
-            removeFromFavorite={navigation.state.params.removeFromFavorite}
-            favorites={navigation.state.params.favorites} 
+        <HeartButton
+            movie={navigation.state.params.movie}
+            dispatch={navigation.dispatch}
         />
 });
 

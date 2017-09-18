@@ -5,14 +5,11 @@ import {
  import MovieCell from './MovieCell';
 
 class MovieList extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.listingTitle,
-  });
-
   movieSelected = (movie) => {
-    const { removeFromFavorite, addToFavorite, favorites } = this.props.navigation.state.params;
-    this.props.navigation.navigate('MovieDetail', 
-      { movie, favorites, removeFromFavorite, addToFavorite }
+    this.props.navigation.navigate('MovieDetail',
+      {
+        movie,
+      }
     );
   }
 
@@ -20,7 +17,7 @@ class MovieList extends Component {
     return (
       <FlatList
           style={styles.searchResults}
-          data={this.props.navigation.state.params.movies}
+          data={this.props.movies}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <MovieCell movie={item} callback={this.movieSelected} />}
       />

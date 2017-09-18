@@ -7,15 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import * as fakeMoviesApi from '../fakeMoviesApi';
-import _ from 'lodash';
 
 const imageSource = require('../resources/movieBoardImg.png');
-
-const state = {
-  inputValue: '',
-  movies: [],
-  favorites: [],
-};
 
 class Home extends Component {
   static navigationOptions = {
@@ -24,7 +17,11 @@ class Home extends Component {
 
   constructor() {
     super();
-    this.state = state;
+
+    this.state = {
+      inputValue: '',
+      movies: [],
+    };
   }
 
   onChangeText = (inputValue) => {
@@ -36,35 +33,14 @@ class Home extends Component {
   }
 
   seeMyFavorites = () => {
-    this.props.navigation.navigate('MovieList', {
-      listingTitle: 'My Favorites',
-      movies: this.state.favorites,
-      favorites: this.state.favorites,
-      removeFromFavorite: this.removeFromFavorite, 
-      addToFavorite: this.addToFavorite
-    });
-  }
-
-  removeFromFavorite = (movie) => {
-    this.setState({
-      favorites: _.filter(this.state.favorites, f => f.id !== movie.id)
-    });
-  }
-
-  addToFavorite = (movie) => {
-    this.setState({
-      favorites: [...this.state.favorites, movie],
-    });
+    this.props.navigation.navigate('FavoriteMovieList');
   }
 
   searchMovies = (keyword) => {
     const movies = fakeMoviesApi.search(keyword);
-    this.props.navigation.navigate('MovieList', {
-      listingTitle: `Searches for '${keyword}'`,
+    this.props.navigation.navigate('SearchMovieList', {
+      keyword,
       movies,
-      favorites: this.state.favorites,
-      removeFromFavorite: this.removeFromFavorite, 
-      addToFavorite: this.addToFavorite
     });
   }
 
