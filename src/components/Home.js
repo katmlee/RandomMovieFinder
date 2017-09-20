@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import * as fakeMoviesApi from '../moviesApi';
+import { connect } from 'react-redux';
+import { clear, callMovieApi } from '../redux/movies';
 import imageSource from '../resources/movieBoardImg.png';
 
 const styles = {
@@ -56,23 +57,14 @@ class Home extends Component {
   }
 
   onButtonPress = () => {
-    this.searchMovies(this.state.inputValue);
+    this.props.dispatchCallMovieApi(this.state.inputValue);
+    this.props.navigation.navigate('SearchMovieList', {
+      keyword: this.state.inputValue,
+    });
   }
 
   seeMyFavorites = () => {
     this.props.navigation.navigate('FavoriteMovieList');
-  }
-
-  searchMovies = (keyword) => {
-    fakeMoviesApi.search(keyword)
-      .then((movies) => {
-        console.log('movies', movies);
-        this.props.navigation.navigate('SearchMovieList', {
-          keyword,
-          movies,
-        });
-      })
-      .catch(() => console.log('faillleeedddd'));
   }
 
   render() {
@@ -109,6 +101,11 @@ Home.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
+  dispatchCallMovieApi: PropTypes.func.isRequired,
 };
 
-export default Home;
+const mapDispatchToProps = dispatch => ({
+  dispatchCallMovieApi: keyword => dispatch(callMovieApi(keyword)),
+});
+
+export default connect(null, mapDispatchToProps)(Home);

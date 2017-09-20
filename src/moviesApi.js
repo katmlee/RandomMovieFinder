@@ -15,7 +15,6 @@ export const search = keyword =>
   })
     .then(response => response.data.results)
     .catch((response) => {
-      console.log(response);
-      return [];
+      Promise.reject(response);
     });
 
