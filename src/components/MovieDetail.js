@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
   ScrollView,
   View,
   Image,
   Text,
 } from 'react-native';
-import { IMAGE_PREFIX } from '../fakeMoviesApi';
+import PropTypes from 'prop-types';
+import { IMAGE_PREFIX } from '../moviesApi';
 import HeartButton from '../containers/HeartButton';
 
 const styles = {

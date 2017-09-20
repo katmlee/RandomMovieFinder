@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -9,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import * as fakeMoviesApi from '../fakeMoviesApi';
+import PropTypes from 'prop-types';
+import * as fakeMoviesApi from '../moviesApi';
 import imageSource from '../resources/movieBoardImg.png';
 
 const styles = {
@@ -66,11 +64,15 @@ class Home extends Component {
   }
 
   searchMovies = (keyword) => {
-    const movies = fakeMoviesApi.search(keyword);
-    this.props.navigation.navigate('SearchMovieList', {
-      keyword,
-      movies,
-    });
+    fakeMoviesApi.search(keyword)
+      .then((movies) => {
+        console.log('movies', movies);
+        this.props.navigation.navigate('SearchMovieList', {
+          keyword,
+          movies,
+        });
+      })
+      .catch(() => console.log('faillleeedddd'));
   }
 
   render() {

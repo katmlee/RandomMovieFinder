@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
   Text,
   Image,
   View,
   TouchableHighlight,
 } from 'react-native';
-import { IMAGE_PREFIX } from '../fakeMoviesApi';
+import PropTypes from 'prop-types';
+import { IMAGE_PREFIX } from '../moviesApi';
 
 
 const styles = {
