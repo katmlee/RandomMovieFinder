@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import { addFavorite, removeFavorite } from '../redux/favorites';
 import favoritesIcon from '../resources/favorites.png';
@@ -13,7 +13,7 @@ const isFavorite = (favorites, movie) =>
   favorites.includes(movie);
 
 const FavoriteButton = ({ movie, favorites, dispatchAddFavorite, dispatchRemoveFavorite }) => (
-  <TouchableHighlight
+  <TouchableOpacity
     style={{ marginRight: 10 }}
     onPress={() => {
       if (isFavorite(favorites, movie)) {
@@ -24,7 +24,7 @@ const FavoriteButton = ({ movie, favorites, dispatchAddFavorite, dispatchRemoveF
     }}
   >
     <Image source={isFavorite(favorites, movie) ? favoritesSelectedIcon : favoritesIcon} />
-  </TouchableHighlight>
+  </TouchableOpacity>
 );
 
 FavoriteButton.propTypes = {
