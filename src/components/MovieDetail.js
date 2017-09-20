@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { IMAGE_PREFIX } from '../moviesApi';
-import HeartButton from '../containers/HeartButton';
+import FavoriteButton from '../containers/FavoriteButton';
 
 const styles = {
   image: {
@@ -60,7 +60,7 @@ const MovieDetail = ({ navigation }) => {
 
 MovieDetail.navigationOptions = ({ navigation }) => ({
   title: 'Movie',
-  headerRight: <HeartButton
+  headerRight: <FavoriteButton
     movie={navigation.state.params.movie}
     dispatch={navigation.dispatch}
   />,

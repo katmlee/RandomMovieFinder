@@ -12,7 +12,7 @@ import favoritesSelectedIcon from '../resources/favorites_selected.png';
 const isFavorite = (favorites, movie) =>
   favorites.includes(movie);
 
-const HeartButton = ({ movie, favorites, dispatchAddFavorite, dispatchRemoveFavorite }) => (
+const FavoriteButton = ({ movie, favorites, dispatchAddFavorite, dispatchRemoveFavorite }) => (
   <TouchableHighlight
     style={{ marginRight: 10 }}
     onPress={() => {
@@ -27,19 +27,20 @@ const HeartButton = ({ movie, favorites, dispatchAddFavorite, dispatchRemoveFavo
   </TouchableHighlight>
 );
 
-HeartButton.propTypes = {
+FavoriteButton.propTypes = {
   movie: PropTypes.shape({}).isRequired,
   favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   dispatchAddFavorite: PropTypes.func.isRequired,
   dispatchRemoveFavorite: PropTypes.func.isRequired,
 };
 
-export default connect(
-  state => ({
-    favorites: state.favorites,
-  }),
-  dispatch => ({
-    dispatchAddFavorite: movie => dispatch(addFavorite(movie)),
-    dispatchRemoveFavorite: movie => dispatch(removeFavorite(movie)),
-  }),
-)(HeartButton);
+const mapStateToProps = state => ({
+  favorites: state.favorites,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatchAddFavorite: movie => dispatch(addFavorite(movie)),
+  dispatchRemoveFavorite: movie => dispatch(removeFavorite(movie)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteButton);
