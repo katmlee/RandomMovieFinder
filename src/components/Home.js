@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
 import {
   Text,
   View,
@@ -7,8 +10,34 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import * as fakeMoviesApi from '../fakeMoviesApi';
+import imageSource from '../resources/movieBoardImg.png';
 
-const imageSource = require('../resources/movieBoardImg.png');
+const styles = {
+  button: {
+    borderWidth: 1,
+    borderRadius: 3,
+    padding: 5,
+    margin: 5,
+  },
+  image: {
+    width: '30%',
+    height: '30%',
+    resizeMode: 'contain',
+  },
+  homeContent: {
+    flex: 1,
+    paddingTop: 15,
+    alignItems: 'center',
+  },
+  searchBar: {
+    height: 40,
+    width: '70%',
+    padding: 10,
+    borderRadius: 2,
+    borderColor: 'gray',
+    borderWidth: 1,
+  },
+};
 
 class Home extends Component {
   static navigationOptions = {
@@ -56,7 +85,7 @@ class Home extends Component {
         />
         <TextInput
           style={styles.searchBar}
-          placeholder='Search anything...'
+          placeholder="Search anything..."
           onChangeText={this.onChangeText}
         />
         <TouchableOpacity onPress={this.onButtonPress}>
@@ -74,31 +103,10 @@ class Home extends Component {
   }
 }
 
-const styles = {
-  button: {
-    borderWidth: 1,
-    borderRadius: 3,
-    padding: 5,
-    margin: 5,
-  },
-  image: {
-    width: '30%',
-    height: '30%',
-    resizeMode: 'contain',
-  },
-  homeContent: {
-    flex: 1,
-    paddingTop: 15,
-    alignItems: 'center'
-  },
-  searchBar: {
-    height: 40,
-    width: '70%',
-    padding: 10,
-    borderRadius: 2,
-    borderColor: 'gray',
-    borderWidth: 1,
-  }
+Home.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
 };
 
 export default Home;

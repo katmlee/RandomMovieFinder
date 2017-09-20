@@ -6,4 +6,5 @@ export const search = (keyword) => {
   if (keyword === 'Fight') {
     return movies.results;
   }
+  return [];
 };

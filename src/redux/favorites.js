@@ -1,9 +1,9 @@
-export const addFavorite = (movie) => ({
+export const addFavorite = movie => ({
   type: 'ADD_FAVORITE',
   movie,
 });
 
-export const removeFavorite = (movie) => ({
+export const removeFavorite = movie => ({
   type: 'REMOVE_FAVORITE',
   movie,
 });
@@ -17,7 +17,7 @@ export default (state = [], action) => {
       ];
     case 'REMOVE_FAVORITE':
       return [
-        ...state.filter(f => f.id !== action.movie.id)
+        ...state.filter(f => f.id !== action.movie.id),
       ];
     default:
       return state;
