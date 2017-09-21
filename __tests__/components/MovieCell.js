@@ -7,5 +7,6 @@ it('renders correctly', () => {
   const movie = {};
   const tree = renderer.create(
     <MovieCell poster_path="" movie={movie} />,
-  );
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });
