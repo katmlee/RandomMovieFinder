@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { clear, callMovieApi } from '../redux/movies';
+import { callMovieApi } from '../redux/movies';
 import imageSource from '../resources/movieBoardImg.png';
 
 const styles = {

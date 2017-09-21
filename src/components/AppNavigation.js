@@ -3,7 +3,7 @@ import {
 } from 'react-navigation';
 import Home from './Home';
 import FavoriteMovieList from '../containers/FavoriteMovieList';
-import SearchMovieList from './SearchMovieList';
+import SearchMovieList from '../containers/SearchMovieList';
 import MovieDetail from './MovieDetail';
 
 const AppNavigation = StackNavigator({

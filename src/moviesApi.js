@@ -13,8 +13,5 @@ export const search = keyword =>
       query: keyword,
     },
   })
-    .then(response => response.data.results)
-    .catch((response) => {
-      Promise.reject(response);
-    });
+    .then(response => response.data.results);
 
