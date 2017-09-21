@@ -1,10 +1,11 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Index from '../index.android.js';
+import MovieCell from '../../src/components/MovieCell';
 
 it('renders correctly', () => {
+  const movie = {};
   const tree = renderer.create(
-    <Index />
+    <MovieCell poster_path="" movie={movie} />,
   );
 });
