@@ -39,8 +39,8 @@ const MovieCell = ({ movie, callback }) => (
     <View style={styles.cell}>
       <Image style={styles.image} source={{ uri: `${IMAGE_PREFIX}${movie.poster_path}` }} />
       <View style={styles.description}>
-        <Text style={styles.titleText} key={movie.id}>{movie.title}</Text>
-        <Text style={styles.ratingText}>{movie.vote_average}/10</Text>
+        <Text id="movieTitle" style={styles.titleText} key={movie.id}>{movie.title}</Text>
+        <Text id="movieVoteAverage" style={styles.ratingText}>{`${movie.vote_average}/10`}</Text>
       </View>
     </View>
   </TouchableHighlight>
