@@ -8,5 +8,10 @@
   ],
   "rules": {
     "react/jsx-filename-extension": 0
+  },
+  "globals": {
+    "describe": false,
+    "it": false,
+    "expect": false
   }
 }
