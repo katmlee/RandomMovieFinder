@@ -21,13 +21,16 @@
     "babel-eslint": "^8.0.0",
     "babel-jest": "21.0.0",
     "babel-preset-react-native": "3.0.2",
+    "enzyme": "^2.9.1",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "jest": "21.0.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react-addons-test-utils": "^15.0.0-rc.2",
+    "react-dom": "^16.0.0-rc.3"
   },
   "jest": {
     "preset": "react-native",
