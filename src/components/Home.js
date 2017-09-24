@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import fakeMoviesApi from '../fakeMoviesApi';
 import {
   Text,
   View,
@@ -9,32 +8,23 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MovieList from './MovieList';
+import SearchBox from './SearchBox';
 
-const state = {
-  inputValue: '',
-  movies: [],
-}
-
-class Home extends Component {
-  constructor() {
-    super()
-    this.state = state
+class Home extends React.Component {
+  constructor(props){
+    super(props);
+    this.onSearchPressed = this.onSearchPressed.bind(this);
   }
 
-  onChangeText = (inputValue) => {
-    this.setState({inputValue})
+  state = {
+    searchKeyword: '',
   }
 
-  onButtonPress = () => {
-    this.searchMovies(this.state.inputValue)
+  onSearchPressed (searchKeyword) {
+    this.setState({searchKeyword});
   }
 
-  searchMovies = (keyword) => {
-    let movies = fakeMoviesApi(keyword)
-    this.setState({movies});
-  }
-
-  render() {
+  render () {
     return (
       <View style={styles.homeContent}>
         <Text>
@@ -44,18 +34,12 @@ class Home extends Component {
           style={styles.image}
           source={require('../resources/movieBoardImg.jpg')}
         />
-        <TextInput
-          style={styles.searchBar}
-          placeholder='Search anything...'
-          onChangeText={this.onChangeText}
-        />
-        <TouchableOpacity onPress={this.onButtonPress}>
-          <View style={styles.button}>
-            <Text> Search </Text>
-          </View>
-        </TouchableOpacity>
-        <MovieList searchKeyword={this.state.inputValue}
-          movies={this.state.movies} />
+        <SearchBox onSearchPressed={this.onSearchPressed} />
+        <View style={styles.movieListView}>
+          <MovieList
+            searchKeyword={this.state.searchKeyword}
+          />
+        </View>
       </View>
     )
   }
@@ -78,13 +62,9 @@ const styles = {
     paddingTop: 15,
     alignItems: 'center'
   },
-  searchBar: {
-    height: 40,
-    width: '70%',
-    padding: 10,
-    borderRadius: 2,
-    borderColor: 'gray',
-    borderWidth: 1,
+  movieListView: {
+    width: '95%',
+    flex: 1
   }
 }
 

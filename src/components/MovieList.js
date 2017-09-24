@@ -1,13 +1,7 @@
 import React from 'react';
-import { Text, ScrollView, View } from 'react-native';
-
-const renderList = (movies) => {
-  if (movies && movies.length > 0) {
-    return movies.map(movie =>
-      <Text key={movie.id}>{movie.title}</Text>
-    );
-  }
-}
+import { Text, FlatList, View } from 'react-native';
+import MovieListItem from './MovieListItem';
+import moviesData from '../resources/movies.json';
 
 const renderSearchWord = (searchKeyword) => {
   if (searchKeyword !== '') {
@@ -18,23 +12,53 @@ const renderSearchWord = (searchKeyword) => {
   )}
 }
 
-const MovieList = ({searchKeyword, movies}) => (
-  <View style={styles.searchResults}>
-    <Text style={styles.currentSearch}>
-        {renderSearchWord(searchKeyword)}
-    </Text>
-    <ScrollView>
-        {renderList(movies)}
-    </ScrollView>
-  </View>
-);
+class MovieList extends React.Component {
+  state = {
+    moviesToDisplay: moviesData.results,
+  }
+
+  itemContainsKeyword(item, searchKeyword) {
+    const itemTitle = item.title.toLowerCase();
+    const keyword = searchKeyword.toLowerCase();
+    return itemTitle.indexOf(keyword) >= 0;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.searchKeyword !== '') {
+      const newMoviesToDisplay = moviesData.results.filter((item) => 
+        this.itemContainsKeyword(item, nextProps.searchKeyword)
+      );
+      this.setState({moviesToDisplay: newMoviesToDisplay})
+    } else {
+      this.setState({moviesToDisplay: moviesData.results})
+    }
+  }
+
+  render () {
+    const {searchKeyword, movies} = this.props;
+    return (
+      <View style={styles.searchResults}>
+        <Text style={styles.currentSearch}>
+            {renderSearchWord(searchKeyword)}
+        </Text>
+        <FlatList
+          style={{flex:1}}
+          data={this.state.moviesToDisplay}
+          keyExtractor={(item, index) => item.id }
+          renderItem={({item}) => <MovieListItem
+            title={item.title}
+            posterPath={item.poster_path}
+            voteAverage={item.vote_average}
+          />}
+        />
+      </View>
+    );
+  }
+}
 
 const styles = {
   searchResults:{
     flex:1,
-    width:'100%',
-    paddingLeft:'15%',
-    paddingRight:'15%',
   },
   currentSearch: {
     textAlign: 'center',
