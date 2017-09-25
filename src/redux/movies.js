@@ -1,8 +1,8 @@
 import * as moviesApi from '../moviesApi';
 
-const CALL_MOVIE_IN_PROGRESS = 'CALL_MOVIE_IN_PROGRESS';
-const CALL_MOVIE_SUCCESS = 'CALL_MOVIE_SUCCESS';
-const CALL_MOVIE_FAIL = 'CALL_MOVIE_FAIL';
+export const CALL_MOVIE_IN_PROGRESS = 'CALL_MOVIE_IN_PROGRESS';
+export const CALL_MOVIE_SUCCESS = 'CALL_MOVIE_SUCCESS';
+export const CALL_MOVIE_FAIL = 'CALL_MOVIE_FAIL';
 
 export const callMovieApi = keyword => (dispatch) => {
   dispatch({ type: CALL_MOVIE_IN_PROGRESS });
@@ -17,7 +17,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CALL_MOVIE_IN_PROGRESS:
       return {
@@ -40,3 +40,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default reducer;
