@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Image } from 'react-native';
 import configureStore from 'redux-mock-store';
-import FavoriteButton from '../../src/containers/FavoriteButton';
-import favoritesSelectedIcon from '../../src/resources/favorites_selected.png';
-import * as favorites from '../../src/redux/favorites';
+import FavoriteButton from '../FavoriteButton';
+import favoritesSelectedIcon from '../../resources/favorites_selected.png';
+import * as favorites from '../../redux/favorites';
 
 const mockStore = configureStore();
 let store;

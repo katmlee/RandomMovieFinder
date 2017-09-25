@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Text, Image } from 'react-native';
-import MovieCell from '../../src/components/MovieCell';
-import { IMAGE_PREFIX } from '../../src/moviesApi';
+import MovieCell from '../MovieCell';
+import { IMAGE_PREFIX } from '../../moviesApi';
 
 describe('MovieCell', () => {
   const callback = jest.fn();

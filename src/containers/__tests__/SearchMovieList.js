@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import SearchMovieList from '../../src/containers/SearchMovieList';
+import SearchMovieList from '../SearchMovieList';
 
 const mockStore = configureStore();
 let store;

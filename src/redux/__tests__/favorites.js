@@ -1,4 +1,4 @@
-import reducer, { addFavorite, removeFavorite, ADD_FAVORITE, REMOVE_FAVORITE } from '../../src/redux/favorites';
+import reducer, { addFavorite, removeFavorite, ADD_FAVORITE, REMOVE_FAVORITE } from '../favorites';
 
 describe('favorites', () => {
   it('should addFavorite', () => {
