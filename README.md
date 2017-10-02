@@ -41,3 +41,5 @@ Run unit tests
 ```
 $ npm test
 ```
+# Folder Structure
+The src folder holds all of our app code. The app.js file in the app folder is imported into our index.ios and index.android files. There are several ways to structure your project. For the purposes of this project, containers are smart components connected by redux.
