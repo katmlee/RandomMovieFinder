@@ -4,22 +4,15 @@ import { connect } from 'react-redux';
 import { ActivityIndicator, Text, View } from 'react-native';
 import MovieList from '../components/MovieList';
 
-const styles = ({
-  errorContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-const SearchMovieList = ({ navigation, isLoading, movies, error }) => {
+const SearchMovieList = (props) => {
+  const { navigation, isLoading, movies, error } = props;
   if (isLoading) {
     return <ActivityIndicator color={'red'} style={{ flex: 1 }} />;
   }
 
   if (error) {
     return (
-      <View style={styles.errorContainer}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Something went wrong</Text>
       </View>
     );
